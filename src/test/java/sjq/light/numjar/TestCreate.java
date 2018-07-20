@@ -1,0 +1,24 @@
+package sjq.light.numjar;
+
+import org.junit.Test;
+import sjq.light.numjar.ndarray.Array2D;
+
+public class TestCreate {
+    
+    NumJar nj = NumJar.as();
+    
+    @Test
+    public void testCreate() {
+        double[][] x = {{1,2,3,6},{4,5,6,9},{7,8,9,1}};
+        
+        Array2D array = nj.array(x);
+        System.out.println(array);
+    }
+    
+    @Test
+    public void testZeros() {
+        Array2D array = nj.zeros(2, 3);
+        System.out.println(array);
+    }
+
+}
