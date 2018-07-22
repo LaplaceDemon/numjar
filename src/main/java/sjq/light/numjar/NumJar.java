@@ -15,7 +15,7 @@ public class NumJar {
         return INS;
     }
     
-    public Linalg linalg = new Linalg();
+    public Linalg linalg = new Linalg(this);
 
     public Array2D array(double[][] data) {
         Array2D arr = new Array2D(data);

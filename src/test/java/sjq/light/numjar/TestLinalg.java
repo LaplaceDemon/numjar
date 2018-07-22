@@ -1,6 +1,5 @@
 package sjq.light.numjar;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import sjq.light.numjar.ndarray.Array2D;
 
@@ -8,13 +7,15 @@ public class TestLinalg {
     NumJar nj = NumJar.as();
     
     @Test
-    @Ignore
     public void testInv() {
-        double[][] x = {{10,2,3,-6},{4,5,6,9},{7,8,9,1},{7,8,9,1}};
-        
+        double[][] x = {{4, 2, 1, 5},{8,7,2,10},{4,8,3,6},{6,8,4,9}};
         Array2D array = nj.array(x);
-        Array2D inv = nj.linalg.inv(array);
-        System.out.println(inv);
+        
+        Array2D invArray = nj.linalg.inv(array);
+        System.out.println("A^-1 = " + invArray);
+        
+        Array2D eArr = nj.dot(invArray, array);
+        System.out.println(eArr);
     }
     
     @Test
@@ -56,25 +57,37 @@ public class TestLinalg {
     
     @Test
     public void testLU1() {
-        double[][] x = {{1, -2, -2, -3},{3,-9,0,-9},{-1,2,4,7},{-3,-6,26,2}};
+        double[][] x = {{4, 2, 1, 5},{8,7,2,10},{4,8,3,6},{6,8,4,9}};
         Array2D array = nj.array(x);
-        Array2D[] lu = nj.linalg.LU(array);
-        Array2D l = lu[0];
-        Array2D u = lu[1];
+//        Array2D[] lu = nj.linalg.LU(array);
+//        Array2D l = lu[0];
+//        Array2D u = lu[1];
         
-        System.out.println("原始矩阵" + array);
+//        System.out.println("原始矩阵" + array);
+//        
+//        System.out.println("L = "  + l);
+//        System.out.println("U = " + u);
+//        
+//        Array2D dot = nj.dot(l, u);
+//        System.out.println(dot);
         
-        System.out.println(l);
-        System.out.println(u);
+//        Array2D invL = nj.linalg.invL(l);
+//        System.out.println("L^-1 = " + invL);
         
-        Array2D dot = nj.dot(l, u);
-        System.out.println(dot);
+//        Array2D dot2 = nj.dot(invL, l);
+//        System.err.println(dot2);
         
-        Array2D invL = nj.linalg.invL(l);
-        System.out.println(invL);
+//        Array2D invU = nj.linalg.invU(u);
+//        System.out.println("U^-1 = " + invU);
+//        
+//        Array2D dot3 = nj.dot(invU, u);
+//        System.err.println(dot3);
+
+        Array2D invArray = nj.linalg.inv(array);
+        System.err.println("A^-1 = " + invArray);
         
-        Array2D dot2 = nj.dot(invL, l);
-        System.err.println(dot2);
+        Array2D dot4 = nj.dot(invArray, array);
+        System.err.println(dot4);
     }
     
 }
