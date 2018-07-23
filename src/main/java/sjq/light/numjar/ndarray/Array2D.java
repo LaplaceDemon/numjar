@@ -76,5 +76,15 @@ public class Array2D {
 
         return sb.toString();
     }
+    
+    public Array2D copy() {
+        double[][] newData = new double[data.length][];
+        for(int i = 0;i<newData.length;i++) {
+            double[] element = data[i];
+            newData[i] = Arrays.copyOf(element, element.length);
+        }
+        Array2D newA = new Array2D(newData);
+        return newA;
+    }
 
 }

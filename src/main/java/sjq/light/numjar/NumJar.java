@@ -22,36 +22,6 @@ public class NumJar {
         return arr;
     }
 
-    /*
-    private void checkData(NDArray ndArray) {
-        Object data = ndArray.data;
-        // 判断是不是数组
-        boolean isArray = data.getClass().isArray();
-        if(!isArray) {
-            break;
-        }
-        int len = Array.getLength(data);
-        ndArray.shape.add(len);
-        for(int i = 0; i<len; i++) {
-            data = Array.get(data, i);
-            // 判断是不是数组
-            boolean isArray = data.getClass().isArray();
-            
-        }
-        
-        while(true) {
-            // 这一层的计算
-            
-            
-            while() {
-                // 下一层
-                
-            }
-            
-        }
-    }
-    */
-
     public Array2D mapfunc(Array2D array2d, Function<Double, Double> f) {
         int[] shape = array2d.shape();
         int s0 = shape[0];
@@ -104,6 +74,14 @@ public class NumJar {
     public Array2D log(Array2D array2d) {
         return this.mapfunc(array2d, Math::log10);
     }
+    
+    public Array2D exp(Array2D array2d) {
+        return this.mapfunc(array2d, Math::exp);
+    }
+    
+    public Array2D sqrt(Array2D array2d) {
+        return this.mapfunc(array2d, Math::sqrt);
+    }
 
     public Array1D linspace(double x0, double x1, int step) {
         double dx = (x1 - x0) / step;
@@ -151,5 +129,38 @@ public class NumJar {
         Array2D arr2d = new Array2D(c);
         return arr2d;
     }
+    
+    public Array2D ones(int dim0,int dim1) {
+        double[][] c = new double[dim0][dim1];
+        Array2D arr2d = new Array2D(c);
+        double[][] data2d = arr2d.getData();
+        for(int i = 0;i<data2d.length;i++) {
+            double[] data1d = data2d[i];
+            for(int j = 0;j<data1d.length;j++) {
+                data1d[j] = 1;
+            }
+        }
+        
+        return arr2d;
+    }
+    
+    public Array1D arange(double x0,double x1,double step) {
+        double numLength = x1 - x0;
+        int len = (int)(numLength/step);
+        if(numLength % step != 0) {
+            len += 1;
+        }
+        
+        double[] array = new double[len];
+        
+        array[0] = x0;
+        for(int i = 1; i < array.length; i++) {
+            array[i] = array[i-1] + step;
+        }
+        
+        Array1D array1d = new Array1D(array);
+        return array1d;
+    }
+
 
 }
