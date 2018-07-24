@@ -24,4 +24,10 @@ public class TestArray1D {
         System.out.println(arange);
     }
     
+    @Test
+    public void testA3() {
+        Array1D linspace = nj.linspace(10, 30, 5);
+        System.out.println(linspace);
+    }
+    
 }

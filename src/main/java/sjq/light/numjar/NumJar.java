@@ -16,6 +16,11 @@ public class NumJar {
     }
     
     public Linalg linalg = new Linalg(this);
+    
+    public Array1D array(double[] data) {
+        Array1D arr = new Array1D(data);
+        return arr;
+    }
 
     public Array2D array(double[][] data) {
         Array2D arr = new Array2D(data);
@@ -83,9 +88,9 @@ public class NumJar {
         return this.mapfunc(array2d, Math::sqrt);
     }
 
-    public Array1D linspace(double x0, double x1, int step) {
-        double dx = (x1 - x0) / step;
-        double[] data = new double[step];
+    public Array1D linspace(double x0, double x1, int num) {
+        double dx = (x1 - x0) / (num-1);
+        double[] data = new double[num];
 
         for (int i = 0; i < data.length; i++) {
             data[i] = x0 + i * dx;

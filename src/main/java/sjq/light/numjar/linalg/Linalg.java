@@ -88,7 +88,6 @@ public class Linalg {
                 }
 
                 u[i - 1][k - 1] = a[i - 1][k - 1] - tmpSum;
-                System.out.print("u[" + i + "][" + k + "],");
             }
 
             for (int k = i + 1; k <= n; k++) {
@@ -98,10 +97,8 @@ public class Linalg {
                 }
 
                 l[k - 1][i - 1] = (a[k - 1][i - 1] - tmpSum) / u[i - 1][i - 1];
-                System.out.print("l[" + k + "][" + i + "],");
             }
 
-            System.out.println();
         }
 
         
@@ -181,7 +178,6 @@ public class Linalg {
 
                     r[i][j] = -tmpSum / u[i][i];
                 }
-                System.out.println("u" + i + j);
             }
         }
 

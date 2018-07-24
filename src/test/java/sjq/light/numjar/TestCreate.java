@@ -1,6 +1,7 @@
 package sjq.light.numjar;
 
 import org.junit.Test;
+import sjq.light.numjar.ndarray.Array1D;
 import sjq.light.numjar.ndarray.Array2D;
 
 public class TestCreate {
@@ -8,7 +9,15 @@ public class TestCreate {
     NumJar nj = NumJar.as();
     
     @Test
-    public void testCreate() {
+    public void testCreate1D() {
+        double[] x = {1,2,2,4,8,32};
+        Array1D array = nj.array(x);
+        System.out.println(array);
+    }
+    
+    
+    @Test
+    public void testCreate2D() {
         double[][] x = {{1,2,3,6},{4,5,6,9},{7,8,9,1}};
         
         Array2D array = nj.array(x);
