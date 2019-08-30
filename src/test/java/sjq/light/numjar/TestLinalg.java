@@ -1,7 +1,9 @@
 package sjq.light.numjar;
 
 import org.junit.Test;
-import sjq.light.numjar.ndarray.Array2D;
+
+import io.github.laplacedemon.numjar.NumJar;
+import io.github.laplacedemon.numjar.ndarray.Array2D;
 
 public class TestLinalg {
     NumJar nj = NumJar.as();

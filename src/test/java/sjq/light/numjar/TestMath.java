@@ -1,7 +1,10 @@
 package sjq.light.numjar;
 
 import org.junit.Test;
-import sjq.light.numjar.ndarray.Array2D;
+
+import io.github.laplacedemon.numjar.NumJar;
+import io.github.laplacedemon.numjar.ndarray.Array1D;
+import io.github.laplacedemon.numjar.ndarray.Array2D;
 
 public class TestMath {
     private NumJar nj = NumJar.as();
@@ -48,5 +51,11 @@ public class TestMath {
         Array2D array = nj.array(x);
         Array2D tan = nj.tan(array);
         System.out.println(tan);
+    }
+    
+    @Test
+    public void test() {
+        double[] x= {0,30,45,60,90};
+        Array1D array = nj.array(x);
     }
 }

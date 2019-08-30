@@ -1,7 +1,9 @@
 package sjq.light.numjar;
 
 import org.junit.Test;
-import sjq.light.numjar.ndarray.Array1D;
+
+import io.github.laplacedemon.numjar.NumJar;
+import io.github.laplacedemon.numjar.ndarray.Array1D;
 
 public class TestArray1D {
     NumJar nj = NumJar.as();
@@ -21,6 +23,12 @@ public class TestArray1D {
     @Test
     public void testArange2() {
         Array1D arange = nj.arange(11, 20, 2);
+        System.out.println(arange);
+    }
+    
+    @Test
+    public void testArange3() {
+        Array1D arange = nj.arange(0, 60, 10);
         System.out.println(arange);
     }
     
