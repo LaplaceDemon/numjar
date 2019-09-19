@@ -2,20 +2,11 @@ package io.github.laplacedemon.numjar.ndarray;
 
 import java.util.Arrays;
 
-public class Array1D {
-    private double[] data;
-    private int[] shape = new int[1];
+public class Array1D extends NDArray {
 
-    public Array1D(double[] arr) {
+    public Array1D(double... arr) {
         this.data = arr;
-    }
-
-    public int[] shape() {
-        return shape;
-    }
-
-    public double[] getData() {
-        return data;
+        this.shape[0] = arr.length;
     }
 
     @Override
@@ -40,5 +31,30 @@ public class Array1D {
     public Array2D reshape(int height, int width) {
         return new Array2D(height, width ,this.data);
     }
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Arrays.hashCode(data);
+		result = prime * result + Arrays.hashCode(shape);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Array1D other = (Array1D) obj;
+		if (!Arrays.equals(data, other.data))
+			return false;
+		if (!Arrays.equals(shape, other.shape))
+			return false;
+		return true;
+	}
     
 }

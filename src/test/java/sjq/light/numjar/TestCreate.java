@@ -20,14 +20,13 @@ public class TestCreate {
     
     @Test
     public void testCreate1D02() {
-        Array1D array = nj.array(1,2,2,4,8,32);
+        Array1D array = nj.array(1, 2, 2, 4, 8, 32);
         System.out.println(array);
     }
     
     @Test
     public void testCreate2D01() {
         double[][] x = {{1,2,3,6},{4,5,6,9},{7,8,9,1}};
-        
         Array2D array = nj.array(x);
         System.out.println(array);
     }

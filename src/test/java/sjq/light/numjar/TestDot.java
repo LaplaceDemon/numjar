@@ -1,5 +1,6 @@
 package sjq.light.numjar;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import io.github.laplacedemon.numjar.NumJar;
@@ -8,36 +9,38 @@ import io.github.laplacedemon.numjar.ndarray.Array2D;
 
 public class TestDot {
     
-//    public static void main(String[] args) {
-//        NumJar nj = NumJar.as();
-//        Array2D a0 = nj.array(new double[][]{{0,1,2},{3,4,5},{6,7,8}});
-//        Array2D a1 = nj.array(new double[][]{{0,1,2},{3,4,5},{6,7,8}});
-//        
-//        System.out.println(a0);
-//        System.out.println(a1);
-//        
-//        Array2D dot = nj.dot(a0, a1);
-//        System.out.println(dot);
-//    }
-    
     @Test
     public void testDot01() {
         NumJar nj = NumJar.as();
-        Array2D a = nj.array(new double[][]{{1 ,2},{3, 4}});
+        Array2D a = nj.array(new double[][]{{1 ,  2},{3,   4}});
         Array2D b = nj.array(new double[][]{{11, 12},{13, 14}});
         
         Array2D dot = nj.dot(a, b);
-        System.out.println(dot);
+        
+        Array2D check = nj.array(new double[][]{{37 , 40},{85 , 92}});
+        Assert.assertEquals(dot, check);
+    }
+    
+    @Test
+    public void testDot02() {
+        NumJar nj = NumJar.as();
+        Array2D a = nj.array(new double[][]{{2 , 1},{4 , 3}});
+        Array2D b = nj.array(new double[][]{{1 , 2},{1 , 0}});
+        
+        Array2D dot = nj.dot(a, b);
+        
+        Array2D check = nj.array(new double[][]{{3 , 4},{7 , 8}});
+        Assert.assertEquals(dot, check);
     }
     
     @Test
     public void testVDot01() {
         NumJar nj = NumJar.as();
-        Array2D a = nj.array(new double[][]{{1 ,2},{3, 4}});
+        Array2D a = nj.array(new double[][]{{1 ,  2},{3,   4}});
         Array2D b = nj.array(new double[][]{{11, 12},{13, 14}});
         
         double vdot = nj.vdot(a, b);
-        System.out.println(vdot);
+        Assert.assertEquals(vdot, 130, 0);
     }
     
     @Test
@@ -47,8 +50,7 @@ public class TestDot {
         Array1D b = nj.array(new double[]{0, 1, 0});
         
         double inner = nj.inner(a, b);
-        System.out.println(inner);
+        Assert.assertEquals(inner, 2, 0);
     }
-    
     
 }

@@ -193,10 +193,10 @@ public class NumJar {
         int[] shape0 = x0.shape();
         int[] shape1 = x1.shape();
 
-        int x0w = shape0[0];
-        int x0h = shape0[1];
-        int x1w = shape1[0];
-        int x1h = shape1[1];
+        int x0h = shape0[0];
+        int x0w = shape0[1];
+        int x1h = shape1[0];
+        int x1w = shape1[1];
         
         if (x0w != x1w || x0h != x1h) {
             throw new RuntimeException("objects are not aligned");
@@ -205,15 +205,15 @@ public class NumJar {
         double[] arr0 = x0.getData();
         double[] arr1 = x1.getData();
 
-        double[][] c = new double[x0w][x0h];
+        double[] c = new double[x0w * x0h];
         for (int i = 0; i < x0w; i++) {
             for (int j = 0; j < x0h; j++) {
 //                c[i][j] = arr0[i][j] + arr1[i][j];
-                c[i][j] = x0.get(i, j) + x1.get(i, j);
+                c[i * x0h + j] = x0.get(i, j) + x1.get(i, j);
             }
         }
 
-        Array2D arr2d = new Array2D(c);
+        Array2D arr2d = new Array2D(x0h, x0w, c);
         return arr2d;
     }
 
@@ -233,11 +233,11 @@ public class NumJar {
         int[] shape0 = x0.shape();
         int[] shape1 = x1.shape();
 
-        int x0w = shape0[0];
-        int x0h = shape0[1];
-        int x1w = shape1[0];
-        int x1h = shape1[1];
-
+        int x0h = shape0[0];
+        int x0w = shape0[1];
+        int x1h = shape1[0];
+        int x1w = shape1[1];
+        
         if (x0h != x1w) {
             throw new RuntimeException("objects are not aligned");
         }
@@ -245,17 +245,17 @@ public class NumJar {
         double[] arr0 = x0.getData();
         double[] arr1 = x1.getData();
 
-        double[][] c = new double[x0w][x1h];
+        double[] c = new double[x0h * x1w];
         for (int i = 0; i < x0h; i++) {
             for (int j = 0; j < x1h; j++) {
                 for (int k = 0; k < x0w; k++) {
 //                    c[i][j] += arr0[i][k] * arr1[k][j];
-                    c[i][j] += x0.get(i, j) * x1.get(k, j);
+                    c[i * x1w + j] += x0.get(i, k) * x1.get(k, j);
                 }
             }
         }
 
-        Array2D arr2d = new Array2D(c);
+        Array2D arr2d = new Array2D(x1h, x0w, c);
         return arr2d;
     }
     
