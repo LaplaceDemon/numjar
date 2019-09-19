@@ -6,7 +6,7 @@ public class Array1D extends NDArray {
 
     public Array1D(double... arr) {
         this.data = arr;
-        this.shape[0] = arr.length;
+        this.shape = new int[]{arr.length};
     }
 
     @Override
@@ -28,8 +28,11 @@ public class Array1D extends NDArray {
         return newA;
     }
 
+//    @Override
     public Array2D reshape(int height, int width) {
-        return new Array2D(height, width ,this.data);
+//        return new Array2D(height, width ,this.data);
+//    	public Array2D reshape(int height, int width)
+        return null;
     }
 
 	@Override

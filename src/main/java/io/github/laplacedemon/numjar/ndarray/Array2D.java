@@ -3,9 +3,7 @@ package io.github.laplacedemon.numjar.ndarray;
 import java.util.Arrays;
 
 public class Array2D extends NDArray {
-	private double[] data;
-	private int[] shape;
-
+	
 	public Array2D(int height, int width, double[] data) {
 		shape = new int[2];
 		shape[0] = height; // height

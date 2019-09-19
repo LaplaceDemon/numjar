@@ -216,6 +216,160 @@ public class NumJar {
         Array2D arr2d = new Array2D(x0h, x0w, c);
         return arr2d;
     }
+    
+    public Array1D sub(Array1D x0, Array1D x1) {
+        int[] shape0 = x0.shape();
+        int[] shape1 = x1.shape();
+
+        int x0w = shape0[0];
+        int x1w = shape1[0];
+
+        if (x0w != x1w) {
+            throw new RuntimeException("objects are not aligned");
+        }
+
+        double[] arr0 = x0.getData();
+        double[] arr1 = x1.getData();
+
+        double[] c = new double[x0w];
+        for (int i = 0; i < x0w; i++) {
+            c[i] = arr0[i] - arr1[i];
+        }
+
+        Array1D arr1d = new Array1D(c);
+        return arr1d;
+    }
+    
+    public Array2D sub(Array2D x0, Array2D x1) {
+        int[] shape0 = x0.shape();
+        int[] shape1 = x1.shape();
+
+        int x0h = shape0[0];
+        int x0w = shape0[1];
+        int x1h = shape1[0];
+        int x1w = shape1[1];
+        
+        if (x0w != x1w || x0h != x1h) {
+            throw new RuntimeException("objects are not aligned");
+        }
+
+        double[] arr0 = x0.getData();
+        double[] arr1 = x1.getData();
+
+        double[] c = new double[x0w * x0h];
+        for (int i = 0; i < x0w; i++) {
+            for (int j = 0; j < x0h; j++) {
+//                c[i][j] = arr0[i][j] + arr1[i][j];
+                c[i * x0h + j] = x0.get(i, j) - x1.get(i, j);
+            }
+        }
+
+        Array2D arr2d = new Array2D(x0h, x0w, c);
+        return arr2d;
+    }
+    
+    public Array1D mul(Array1D x0, Array1D x1) {
+        int[] shape0 = x0.shape();
+        int[] shape1 = x1.shape();
+
+        int x0w = shape0[0];
+        int x1w = shape1[0];
+
+        if (x0w != x1w) {
+            throw new RuntimeException("objects are not aligned");
+        }
+
+        double[] arr0 = x0.getData();
+        double[] arr1 = x1.getData();
+
+        double[] c = new double[x0w];
+        for (int i = 0; i < x0w; i++) {
+            c[i] = arr0[i] * arr1[i];
+        }
+
+        Array1D arr1d = new Array1D(c);
+        return arr1d;
+    }
+    
+    public Array2D mul(Array2D x0, Array2D x1) {
+        int[] shape0 = x0.shape();
+        int[] shape1 = x1.shape();
+
+        int x0h = shape0[0];
+        int x0w = shape0[1];
+        int x1h = shape1[0];
+        int x1w = shape1[1];
+        
+        if (x0w != x1w || x0h != x1h) {
+            throw new RuntimeException("objects are not aligned");
+        }
+
+        double[] arr0 = x0.getData();
+        double[] arr1 = x1.getData();
+
+        double[] c = new double[x0w * x0h];
+        for (int i = 0; i < x0w; i++) {
+            for (int j = 0; j < x0h; j++) {
+//                c[i][j] = arr0[i][j] + arr1[i][j];
+                c[i * x0h + j] = x0.get(i, j) * x1.get(i, j);
+            }
+        }
+
+        Array2D arr2d = new Array2D(x0h, x0w, c);
+        return arr2d;
+    }
+    
+    public Array1D div(Array1D x0, Array1D x1) {
+        int[] shape0 = x0.shape();
+        int[] shape1 = x1.shape();
+
+        int x0w = shape0[0];
+        int x1w = shape1[0];
+
+        if (x0w != x1w) {
+            throw new RuntimeException("objects are not aligned");
+        }
+
+        double[] arr0 = x0.getData();
+        double[] arr1 = x1.getData();
+
+        double[] c = new double[x0w];
+        for (int i = 0; i < x0w; i++) {
+            c[i] = arr0[i] / arr1[i];
+        }
+
+        Array1D arr1d = new Array1D(c);
+        return arr1d;
+    }
+    
+    public Array2D div(Array2D x0, Array2D x1) {
+        int[] shape0 = x0.shape();
+        int[] shape1 = x1.shape();
+
+        int x0h = shape0[0];
+        int x0w = shape0[1];
+        int x1h = shape1[0];
+        int x1w = shape1[1];
+        
+        if (x0w != x1w || x0h != x1h) {
+            throw new RuntimeException("objects are not aligned");
+        }
+
+        double[] arr0 = x0.getData();
+        double[] arr1 = x1.getData();
+
+        double[] c = new double[x0w * x0h];
+        for (int i = 0; i < x0w; i++) {
+            for (int j = 0; j < x0h; j++) {
+//                c[i][j] = arr0[i][j] + arr1[i][j];
+                c[i * x0h + j] = x0.get(i, j) / x1.get(i, j);
+            }
+        }
+
+        Array2D arr2d = new Array2D(x0h, x0w, c);
+        return arr2d;
+    }
+    
 
     public Array1D linspace(double x0, double x1, int num) {
         double dx = (x1 - x0) / (num-1);
@@ -250,7 +404,7 @@ public class NumJar {
             for (int j = 0; j < x1h; j++) {
                 for (int k = 0; k < x0w; k++) {
 //                    c[i][j] += arr0[i][k] * arr1[k][j];
-                    c[i * x1w + j] += x0.get(i, k) * x1.get(k, j);
+                    c[i * x1w + j] += arr0[i * x0h + k] * arr1[k * x1h +  j];
                 }
             }
         }
