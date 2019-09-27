@@ -28,11 +28,18 @@ public class Array1D extends NDArray {
         return newA;
     }
 
-//    @Override
     public Array2D reshape(int height, int width) {
-//        return new Array2D(height, width ,this.data);
-//    	public Array2D reshape(int height, int width)
-        return null;
+        if (height < 0 && width > 0) {
+            height = this.data.length / width;
+            return new Array2D(this.data, height, width);
+        } else if (height > 0 && width < 0) {
+            width = this.data.length / height;
+            return new Array2D(this.data, height, width);
+        } else if (height > 0 && width > 0) {
+            return new Array2D(this.data, height, width);
+        } else {
+            throw new RuntimeException();
+        }
     }
 
 	@Override

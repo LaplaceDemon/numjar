@@ -137,8 +137,8 @@ public class Linalg {
 
 		}
 
-		Array2D arrL = new Array2D(n, n, l);
-		Array2D arrU = new Array2D(n, n, u);
+		Array2D arrL = new Array2D(l, n, n);
+		Array2D arrU = new Array2D(u, n, n);
 
 		Array2D[] result = new Array2D[] { arrL, arrU };
 		return result;
@@ -227,7 +227,7 @@ public class Linalg {
 			}
 		}
 
-		Array2D result = new Array2D(n, n, r);
+		Array2D result = new Array2D(r, n, n);
 		return result;
 	}
 	
@@ -273,7 +273,7 @@ public class Linalg {
 			}
 		}
 
-		Array2D result = new Array2D(n, n, r);
+		Array2D result = new Array2D(r, n, n);
 		return result;
 	}
 

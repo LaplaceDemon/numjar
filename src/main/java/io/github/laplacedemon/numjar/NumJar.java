@@ -66,7 +66,7 @@ public class NumJar {
             newData[i] = f.apply(data[i]);
         }
         
-        Array2D newArr = new Array2D(s0, s1, newData);
+        Array2D newArr = new Array2D(newData, s0, s1);
         return newArr;
     }
 
@@ -202,9 +202,6 @@ public class NumJar {
             throw new RuntimeException("objects are not aligned");
         }
 
-        double[] arr0 = x0.getData();
-        double[] arr1 = x1.getData();
-
         double[] c = new double[x0w * x0h];
         for (int i = 0; i < x0w; i++) {
             for (int j = 0; j < x0h; j++) {
@@ -213,7 +210,7 @@ public class NumJar {
             }
         }
 
-        Array2D arr2d = new Array2D(x0h, x0w, c);
+        Array2D arr2d = new Array2D(c, x0h, x0w);
         return arr2d;
     }
     
@@ -253,9 +250,6 @@ public class NumJar {
             throw new RuntimeException("objects are not aligned");
         }
 
-        double[] arr0 = x0.getData();
-        double[] arr1 = x1.getData();
-
         double[] c = new double[x0w * x0h];
         for (int i = 0; i < x0w; i++) {
             for (int j = 0; j < x0h; j++) {
@@ -264,7 +258,7 @@ public class NumJar {
             }
         }
 
-        Array2D arr2d = new Array2D(x0h, x0w, c);
+        Array2D arr2d = new Array2D(c, x0h, x0w);
         return arr2d;
     }
     
@@ -304,9 +298,6 @@ public class NumJar {
             throw new RuntimeException("objects are not aligned");
         }
 
-        double[] arr0 = x0.getData();
-        double[] arr1 = x1.getData();
-
         double[] c = new double[x0w * x0h];
         for (int i = 0; i < x0w; i++) {
             for (int j = 0; j < x0h; j++) {
@@ -315,7 +306,7 @@ public class NumJar {
             }
         }
 
-        Array2D arr2d = new Array2D(x0h, x0w, c);
+        Array2D arr2d = new Array2D(c, x0h, x0w);
         return arr2d;
     }
     
@@ -355,9 +346,6 @@ public class NumJar {
             throw new RuntimeException("objects are not aligned");
         }
 
-        double[] arr0 = x0.getData();
-        double[] arr1 = x1.getData();
-
         double[] c = new double[x0w * x0h];
         for (int i = 0; i < x0w; i++) {
             for (int j = 0; j < x0h; j++) {
@@ -366,7 +354,7 @@ public class NumJar {
             }
         }
 
-        Array2D arr2d = new Array2D(x0h, x0w, c);
+        Array2D arr2d = new Array2D(c, x0h, x0w);
         return arr2d;
     }
     
@@ -409,7 +397,7 @@ public class NumJar {
             }
         }
 
-        Array2D arr2d = new Array2D(x1h, x0w, c);
+        Array2D arr2d = new Array2D(c, x1h, x0w);
         return arr2d;
     }
     
@@ -425,9 +413,6 @@ public class NumJar {
         if (x0w != x1w || x0h != x1h) {
             throw new RuntimeException("objects are not aligned");
         }
-
-        double[] arr0 = x0.getData();
-        double[] arr1 = x1.getData();
 
         double sum = 0.0;
         for (int i = 0; i < x0w; i++) {
@@ -470,7 +455,7 @@ public class NumJar {
     
     public Array2D zeros(int dim0, int dim1) {
         double[] c = new double[dim0 * dim1];
-        Array2D arr2d = new Array2D(dim0, dim1, c);
+        Array2D arr2d = new Array2D(c, dim0, dim1);
         return arr2d;
     }
     
@@ -479,8 +464,12 @@ public class NumJar {
         for (int i = 0; i < c.length; i++) {
             c[i] = 1.0;
         }
-        Array2D arr2d = new Array2D(dim0, dim1, c);
+        Array2D arr2d = new Array2D(c, dim0, dim1);
         return arr2d;
+    }
+    
+    public Array1D arange(double x1) {
+        return arange(0, x1, 1);
     }
     
     public Array1D arange(double x0, double x1, double step) {

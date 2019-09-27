@@ -4,12 +4,27 @@ import java.util.Arrays;
 
 public class Array2D extends NDArray {
 	
-	public Array2D(int height, int width, double[] data) {
-		shape = new int[2];
-		shape[0] = height; // height
-		shape[1] = width; // width
-		this.data = data;
-	}
+    Array2D() {
+    }
+    
+    public Array2D(double[] data, int height, int width) {
+        shape = new int[2];
+        shape[0] = height; // height
+        shape[1] = width; // width
+        this.data = data;
+    }
+    
+    public Array2D(double[] data, int[] shape) {
+        this.data = data;
+        this.shape = shape;
+    }
+    
+//	public Array2D(int height, int width, double[] data) {
+//		shape = new int[2];
+//		shape[0] = height; // height
+//		shape[1] = width; // width
+//		this.data = data;
+//	}
 
 	public Array2D(double[][] data) {
 		shape = new int[2];
@@ -108,7 +123,7 @@ public class Array2D extends NDArray {
 	public Array2D copy() {
 		double[] newData = new double[this.data.length];
 		newData = Arrays.copyOf(this.data, this.data.length);
-		Array2D newA = new Array2D(this.shape[0], this.shape[1], newData);
+		Array2D newA = new Array2D(newData, this.shape[0], this.shape[1]);
 		return newA;
 	}
 
