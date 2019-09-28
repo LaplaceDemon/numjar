@@ -1,10 +1,10 @@
 package io.github.laplacedemon.numjar;
 
-import java.util.function.Function;
-
 import io.github.laplacedemon.numjar.linalg.Linalg;
 import io.github.laplacedemon.numjar.ndarray.Array1D;
 import io.github.laplacedemon.numjar.ndarray.Array2D;
+import io.github.laplacedemon.numjar.ndarray.DoubleFunction;
+import io.github.laplacedemon.numjar.ndarray.NDArray;
 
 public class NumJar {
     private NumJar() {}
@@ -41,129 +41,122 @@ public class NumJar {
         return arr;
     }
     
-    public Array1D mapfunc(Array1D array1d, Function<Double, Double> f) {
-        int[] shape = array1d.shape();
-        int s0 = shape[0];
-        double[] newData = new double[s0];
-
-        double[] data = array1d.getData();
-        for (int i = 0; i < s0; i++) {
-            newData[i] = f.apply(data[i]);
-        }
-
-        Array1D newArr = new Array1D(newData);
-        return newArr;
-    }
-
-    public Array2D mapfunc(Array2D array2d, Function<Double, Double> f) {
-        int[] shape = array2d.shape();
-        int s0 = shape[0];
-        int s1 = shape[0];
-        double[] data = array2d.getData();
-        double[] newData = new double[data.length];
+    public NDArray mapfunc(NDArray ndarray, DoubleFunction f) {
+        int size = ndarray.size();
+        double[] data = ndarray.getData();
+        double[] newData = new double[size];
+        int[] shape = ndarray.shape();
         
-        for (int i = 0; i < data.length; i++) {
+        for (int i = 0; i < size; i++) {
             newData[i] = f.apply(data[i]);
         }
         
-        Array2D newArr = new Array2D(newData, s0, s1);
+        NDArray newArr;
+        if (shape.length == 1) {
+            newArr = new Array1D(newData);
+        } else if (shape.length == 2) {
+            newArr = new Array2D(newData, shape);
+        } else {
+            newArr = new NDArray(newData, shape);
+        }
+        
         return newArr;
     }
-
+    
     public Array2D sin(Array2D array2d) {
-        return this.mapfunc(array2d, Math::sin);
+        return (Array2D)this.mapfunc(array2d, Math::sin);
     }
     
     public Array1D sin(Array1D arr) {
-        return this.mapfunc(arr, Math::sin);
+        return (Array1D)this.mapfunc(arr, Math::sin);
     }
 
     public Array2D cos(Array2D array2d) {
-        return this.mapfunc(array2d, Math::cos);
+        return (Array2D)this.mapfunc(array2d, Math::cos);
     }
     
     public Array1D cos(Array1D arr) {
-        return this.mapfunc(arr, Math::cos);
+        return (Array1D)this.mapfunc(arr, Math::cos);
     }
 
     public Array2D tan(Array2D array2d) {
-        return this.mapfunc(array2d, Math::tan);
+        return (Array2D)this.mapfunc(array2d, Math::tan);
     }
     
     public Array1D tan(Array1D arr) {
-        return this.mapfunc(arr, Math::tan);
+        return (Array1D)this.mapfunc(arr, Math::tan);
     }
 
     public Array2D abs(Array2D array2d) {
-        return this.mapfunc(array2d, Math::abs);
+        return (Array2D)this.mapfunc(array2d, Math::abs);
     }
     
     public Array1D abs(Array1D arr) {
-        return this.mapfunc(arr, Math::abs);
+        return (Array1D)this.mapfunc(arr, Math::abs);
     }
 
     public Array2D arcsin(Array2D array2d) {
-        return this.mapfunc(array2d, Math::asin);
+        return (Array2D)this.mapfunc(array2d, Math::asin);
     }
     
     public Array1D arcsin(Array1D array1d) {
-        return this.mapfunc(array1d, Math::asin);
+        return (Array1D)this.mapfunc(array1d, Math::asin);
     }
 
     public Array2D arccos(Array2D array2d) {
-        return this.mapfunc(array2d, Math::acos);
+        return (Array2D)this.mapfunc(array2d, Math::acos);
     }
     
     public Array1D arccos(Array1D array1d) {
-        return this.mapfunc(array1d, Math::acos);
+        return (Array1D)this.mapfunc(array1d, Math::acos);
     }
 
     public Array2D arctan(Array2D array2d) {
-        return this.mapfunc(array2d, Math::atan);
+        return (Array2D)this.mapfunc(array2d, Math::atan);
     }
     
     public Array1D arctan(Array1D array1d) {
-        return this.mapfunc(array1d, Math::atan);
+        return (Array1D)this.mapfunc(array1d, Math::atan);
     }
     
     public Array2D tanh(Array2D array2d) {
-        return this.mapfunc(array2d, Math::tanh);
+        return (Array2D)this.mapfunc(array2d, Math::tanh);
     }
     
     public Array1D tanh(Array1D array1d) {
-        return this.mapfunc(array1d, Math::tanh);
+        return (Array1D)this.mapfunc(array1d, Math::tanh);
     }
     
     public Array2D ln(Array2D array2d) {
-        return this.mapfunc(array2d, Math::log);
+        return (Array2D)this.mapfunc(array2d, Math::log);
     }
     
     public Array1D ln(Array1D array1d) {
-        return this.mapfunc(array1d, Math::log);
+        return (Array1D)this.mapfunc(array1d, Math::log);
     }
 
     public Array2D log(Array2D array2d) {
-        return this.mapfunc(array2d, Math::log10);
+        return (Array2D)this.mapfunc(array2d, Math::log10);
     }
     
     public Array1D log10(Array1D array1d) {
-        return this.mapfunc(array1d, Math::log10);
+        return (Array1D)this.mapfunc(array1d, Math::log10);
     }
     
     public Array2D exp(Array2D array2d) {
-        return this.mapfunc(array2d, Math::exp);
+        return (Array2D)this.mapfunc(array2d, Math::exp);
     }
     
     public Array1D exp(Array1D array1d) {
-        return this.mapfunc(array1d, Math::exp);
+        return (Array1D)this.mapfunc(array1d, Math::exp);
     }
     
     public Array2D sqrt(Array2D array2d) {
-        return this.mapfunc(array2d, Math::sqrt);
+        return (Array2D)this.mapfunc(array2d, Math::sqrt);
     }
     
     public Array1D sqrt(Array1D array1d) {
-        return this.mapfunc(array1d, Math::sqrt);
+        return (Array1D)this.mapfunc(array1d, Math::sqrt);
     }
     
     public Array1D add(Array1D x0, Array1D x1) {

@@ -6,13 +6,27 @@ public class NDArray {
 	protected double[] data;
 	protected int[] shape;
 	
-	public int[] shape() {
+	public NDArray() {
+        super();
+    }
+
+    public NDArray(double[] data, int[] shape) {
+        super();
+        this.data = data;
+        this.shape = shape;
+    }
+
+    public int[] shape() {
 		return shape;
 	}
 
 	public double[] getData() {
 		return data;
 	}
+	
+	public int size() {
+        return this.data.length;
+    }
 
 	public NDArray reshape(int... is) {
 		NDArray ndarray = new NDArray();
@@ -188,5 +202,5 @@ public class NDArray {
     public String toString() {
         return "NDArray [data=" + Arrays.toString(data) + ", shape=" + Arrays.toString(shape) + "]";
     }
-    
+
 }
