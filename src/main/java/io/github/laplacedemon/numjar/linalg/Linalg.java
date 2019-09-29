@@ -24,7 +24,6 @@ public class Linalg {
 		if (n == 1) {
 			det = arr.get(0, 0);
 		} else if (n == 2) {
-//            det = a[0][0] * a[1][1] - a[1][0] * a[0][1];
 			det = arr.get(0, 0) * arr.get(1, 1) - arr.get(1, 0) * arr.get(0, 1);
 		} else {
 			for (int j1 = 0; j1 < n; j1++) {
@@ -37,12 +36,10 @@ public class Linalg {
 					for (int j = 0; j < n; j++) {
 						if (j == j1)
 							continue;
-//                        m[i - 1][j2] = a[i][j];
 						m[i - 1][j2] = arr.get(i, j);
 						j2++;
 					}
 				}
-//                det += Math.pow(-1.0, 1.0 + j1 + 1.0) * a[0][j1] * determinant(m, n - 1);
 				det += Math.pow(-1.0, 1.0 + j1 + 1.0) * arr.get(0, j1) * determinant(m, n - 1);
 			}
 		}
@@ -106,7 +103,6 @@ public class Linalg {
 		double[] u = new double[n * n];
 
 		for (int i = 1; i <= n; i++) {
-//            l[i - 1][i - 1] = 1;
 			l[(i - 1) * (n) + (i - 1)] = 1;
 		}
 
@@ -114,24 +110,18 @@ public class Linalg {
 			for (int k = i; k <= n; k++) {
 				double tmpSum = 0;
 				for (int j = 1; j <= i - 1; j++) {
-//                    tmpSum += l[i - 1][j - 1] * u[j - 1][k - 1];
 					tmpSum += l[(i - 1) * (n) + j - 1] * u[(j - 1) * (n) + k - 1];
 				}
 
-//                u[i - 1][k - 1] = a[i - 1][k - 1] - tmpSum;
-//                u[i - 1][k - 1] = arr.get(i - 1, k - 1) - tmpSum;
 				u[(i - 1) * (n) + k - 1] = a[(i - 1)* (n) + k - 1] - tmpSum;
 			}
 
 			for (int k = i + 1; k <= n; k++) {
 				double tmpSum = 0;
 				for (int j = 1; j <= i - 1; j++) {
-//                    tmpSum += l[k - 1][j - 1] * u[j - 1][i - 1];
 					tmpSum += l[(k - 1) * (n) + j - 1] * u[(j - 1) * (n) + i - 1];
 				}
 
-//                l[k - 1][i - 1] = (a[k - 1][i - 1] - tmpSum) / u[i - 1][i - 1];
-//                l[k - 1][i - 1] = (arr.get(k - 1, i - 1) - tmpSum) / u[i - 1][i - 1];
 				l[(k - 1) * (n) + i - 1] = (a[(k - 1)* (n) + i - 1] - tmpSum) / u[(i - 1) * (n) + i - 1];
 			}
 
@@ -190,13 +180,11 @@ public class Linalg {
         return result;
     }
 	
-	
-
 	/**
-	 * 相关文档：http://www.docin.com/p-785750320.html?docfrom=rrela
+	 * Related documents: http://www.docin.com/p-785750320.html?docfrom=rrela
 	 * 
-	 * @param arr
-	 * @return
+	 * @param arr 2d array
+	 * @return inv 
 	 */
 	public Array2D invL(Array2D arr) {
 		double[] l = arr.getData();
@@ -218,7 +206,6 @@ public class Linalg {
 				} else {
 					double tmpSum = 0;
 					for (int k = 0; k < i; k++) {
-//                        tmpSum += l[i][k] * r[k][j];
 						tmpSum += l[i*n + k] * r[k * n + j];
 					}
 
@@ -234,10 +221,10 @@ public class Linalg {
 	
 
 	/**
-	 * 相关文档：http://www.docin.com/p-785750320.html?docfrom=rrela
+	 * Related documents: http://www.docin.com/p-785750320.html?docfrom=rrela
 	 * 
-	 * @param arr
-	 * @return
+	 * @param arr 2d array
+	 * @return inv
 	 */
 	public Array2D invU(Array2D arr) {
 		double[] u = arr.getData();
@@ -256,18 +243,13 @@ public class Linalg {
 		for (int j = 0; j < n; j++) {
 			for (int i = j; i >= 0; i--) {
 				if (i == j) {
-//                    r[i][j] = 1 / u[i][j];
 					r[i * n + j] = 1/u[i*n + j];
 				} else {
 					double tmpSum = 0;
 					for (int k = i + 1; k <= j; k++) {
-//                        tmpSum += u[i][k] * r[k][j];
-//						tmpSum += arr.index(i, k) * r[k *n + j];
 						tmpSum += u[i * n +  k] * r[k *n + j];
 					}
 
-//                    r[i][j] = -tmpSum / u[i][i];
-//					r[i*n + j] = -tmpSum / arr.index(i, i);
 					r[i*n + j] = -tmpSum / u[i * n + i];
 				}
 			}

@@ -40,21 +40,21 @@ public class Array2D extends NDArray {
 	
 
 	/**
-	 * 获取元素值
+	 * Get the value of an array element
 	 * 
-	 * @param i
-	 * @param j
-	 * @return
+	 * @param i index
+	 * @param j index
+	 * @return value
 	 */
 	public double get(int i, int j) {
 		return data[index(i, j)];
 	}
 
 	/**
-	 * 设置元素值
+	 * Set the value of an array element
 	 * 
-	 * @param i
-	 * @param j
+	 * @param i index
+	 * @param j index
 	 * @param value
 	 */
 	public void set(int i, int j, double value) {
@@ -62,21 +62,21 @@ public class Array2D extends NDArray {
 	}
 
 	/**
-	 * 获取转置后的元素值
+	 * Get the value of the transposed array element
 	 * 
-	 * @param i
-	 * @param j
-	 * @return
+	 * @param i index
+	 * @param j index
+	 * @return value
 	 */
 	public double getT(int i, int j) {
 		return data[index(j, i)];
 	}
 
 	/**
-	 * 设置转置后的元素值
+	 * Set the value of the transposed array element
 	 * 
-	 * @param i
-	 * @param j
+	 * @param i index
+	 * @param j index
 	 * @param value
 	 */
 	public void setT(int i, int j, double value) {
