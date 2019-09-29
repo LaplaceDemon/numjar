@@ -44,7 +44,8 @@ public class TestNDArray {
     public void testBoardcastIndex01() {
         NDArray ndArray = nj.arange(0,10,1).reshape(2,1,5);
         int index = ndArray.boardcastIndex(1,2,3);
-        Assert.assertEquals(index, 13);
+        System.out.println(index);
+        Assert.assertEquals(index, 8);
     }
 	
 	@Test
