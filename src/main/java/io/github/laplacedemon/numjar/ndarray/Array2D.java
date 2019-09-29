@@ -55,7 +55,7 @@ public class Array2D extends NDArray {
 	 * 
 	 * @param i index
 	 * @param j index
-	 * @param value
+	 * @param value value
 	 */
 	public void set(int i, int j, double value) {
 		data[index(i, j)] = value;
@@ -77,7 +77,7 @@ public class Array2D extends NDArray {
 	 * 
 	 * @param i index
 	 * @param j index
-	 * @param value
+	 * @param value value
 	 */
 	public void setT(int i, int j, double value) {
 		data[index(j, i)] = value;
